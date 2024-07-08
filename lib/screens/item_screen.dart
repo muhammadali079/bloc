@@ -111,7 +111,7 @@ class _ItemScreenState extends State<ItemScreen> {
                 children: [
                   ElevatedButton(
                     onPressed: () {
-                      _openPopToUpdateItem(context, index, items[index].title,
+                      _openPopToUpdateItem(context, index+1, items[index].title,
                           items[index].body);
                     },
                     child: Text('Update Item'),

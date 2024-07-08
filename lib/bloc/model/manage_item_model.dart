@@ -18,7 +18,9 @@ class ManageItem {
   void updateItem(int id, String newTitle, String newBody) {
     for (var item in items) {
       if (item.id == id) {
-        item = Item(userId: item.userId, id: item.id, title: newTitle, body: newBody);
+        print("Item found in inventory");
+         item.title = newTitle;
+         item.body=newBody;
         break;
       }
     }
