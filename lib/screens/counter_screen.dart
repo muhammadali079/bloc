@@ -11,7 +11,7 @@ class CounterPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Flutter Bloc Counter'),
+        title: const Text('Flutter Bloc Counter'),
       ),
       body: BlocBuilder<CounterBloc, CounterState>(
         builder: (context, state) {
@@ -20,25 +20,25 @@ class CounterPage extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Text(
+                  const Text(
                     'Counter Value:',
                     style: TextStyle(fontSize: 20),
                   ),
                   Text(
                     '${state.counterValue}',
-                    style: TextStyle(fontSize: 50),
+                    style: const TextStyle(fontSize: 50),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       FloatingActionButton(
                         onPressed: () => context.read<CounterBloc>().add(IncrementCounter()),
-                        child: Icon(Icons.add),
+                        child: const Icon(Icons.add),
                       ),
-                      SizedBox(width: 20),
+                     const  SizedBox(width: 20),
                       FloatingActionButton(
                         onPressed: () => context.read<CounterBloc>().add(DecrementCounter()),
-                        child: Icon(Icons.remove),
+                        child: const Icon(Icons.remove),
                       ),
                     ],
                   ),
@@ -50,25 +50,25 @@ class CounterPage extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Text(
+                  const Text(
                     'Counter Value:',
                     style: TextStyle(fontSize: 20),
                   ),
-                  Text(
+                   Text(
                     '${(state as CounterInitial).counterValue}',
-                    style: TextStyle(fontSize: 50),
+                    style: const TextStyle(fontSize: 50),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       FloatingActionButton(
                         onPressed: () => context.read<CounterBloc>().add(IncrementCounter()),
-                        child: Icon(Icons.add),
+                        child: const Icon(Icons.add),
                       ),
-                      SizedBox(width: 20),
+                      const SizedBox(width: 20),
                       FloatingActionButton(
                         onPressed: () => context.read<CounterBloc>().add(DecrementCounter()),
-                        child: Icon(Icons.remove),
+                        child: const Icon(Icons.remove),
                       ),
                     ],
                   ),

@@ -1,73 +1,3 @@
-// import 'package:flutter/material.dart';
-// import 'package:flutter_bloc/flutter_bloc.dart';
-// import 'package:practice_bloc/bloc/item_bloc/itemBloc.dart';
-// import 'package:practice_bloc/bloc/item_bloc/itemEvents.dart';
-// import 'package:practice_bloc/bloc/item_bloc/itemsState.dart';
-// import 'package:practice_bloc/bloc/model/item_model.dart';
-
-// class ItemScreen extends StatefulWidget {
-//   const ItemScreen({Key? key}) : super(key: key);
-
-//   @override
-//   State<ItemScreen> createState() => _ItemScreenState();
-// }
-
-// class _ItemScreenState extends State<ItemScreen> {
-//   List<bool> _isExpandedList = [];
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(title: Text('Items')),
-//       body: Center(
-//         child: SingleChildScrollView(
-//           child: BlocBuilder<ItemBloc, ItemState>(
-//             builder: (context, state) {
-//               if (state is ItemInitial) {
-//                 return Center(child: Text('Press the button to fetch items'));
-//               } else if (state is ItemLoading) {
-//                 return Center(child: CircularProgressIndicator());
-//               } else if (state is ItemLoaded) {
-//                 _isExpandedList = List<bool>.filled(state.items.length, false);
-
-//                 return Center(
-//                   child: DataTable(
-//                     columns: [
-//                       DataColumn(label: Text('ID')),
-
-//                     ],
-//                     rows: List<DataRow>.generate(state.items.length, (index) {
-//                       return DataRow(
-//                         cells: [
-//                           DataCell(
-//                             InkWell(
-//                               child: Text(state.items[index].id.toString()),
-//                               onTap: () {
-//                                 _toggleExpansion(index, state.items);
-//                               },
-//                             ),
-//                           ),
-
-//                         ],
-//                       );
-//                     }),
-//                   ),
-//                 );
-//               } else if (state is ItemError) {
-//                 return Center(
-//                     child: Text('Failed to fetch items: ${state.message}'));
-//               }
-//               return Container();
-//             },
-//           ),
-//         ),
-//       ),
-//       floatingActionButton: FloatingActionButton(
-//         onPressed: () => context.read<ItemBloc>().add(FetchItems()),
-//         child: Icon(Icons.refresh),
-//       ),
-//     );
-//   }
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:practice_bloc/bloc/item_bloc/itemBloc.dart';
@@ -104,9 +34,9 @@ class _ItemScreenState extends State<ItemScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text('Title: ${items[index].title}'),
-              SizedBox(height: 8),
+             const  SizedBox(height: 8),
               Text('Body: ${items[index].body}'),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               Row(
                 children: [
                   ElevatedButton(
@@ -114,7 +44,7 @@ class _ItemScreenState extends State<ItemScreen> {
                       _openPopToUpdateItem(context, index+1, items[index].title,
                           items[index].body);
                     },
-                    child: Text('Update Item'),
+                    child: const Text('Update Item'),
                   ),
                 ],
               )
@@ -124,7 +54,7 @@ class _ItemScreenState extends State<ItemScreen> {
         actions: <Widget>[
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: Text('Close'),
+            child: const Text('Close'),
           ),
         ],
       ),
@@ -145,18 +75,18 @@ class _ItemScreenState extends State<ItemScreen> {
             children: [
               TextField(
                 controller: titleController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   label: Text("Enter new Title "),
                 ),
               ),
-              SizedBox(height: 8),
+             const SizedBox(height: 8),
               TextField(
                 controller: bodyController,
-                decoration: InputDecoration(
+                decoration:const  InputDecoration(
                   label: Text("Enter new Body "),
                 ),
               ),
-              SizedBox(height: 16),
+             const  SizedBox(height: 16),
               Row(
                 children: [
                   ElevatedButton(
@@ -173,7 +103,7 @@ class _ItemScreenState extends State<ItemScreen> {
                             body: bodyController.text));
                              Navigator.pop(context);
                       },
-                      child: Text("Confirm")),
+                      child: const Text("Confirm")),
                 ],
               )
             ],
@@ -182,27 +112,27 @@ class _ItemScreenState extends State<ItemScreen> {
         actions: <Widget>[
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: Text('Close'),
+            child: const Text('Close'),
           ),
         ],
       ),
     );
   }
 
-  int _rowsPerPage = 10;
+  final int _rowsPerPage = 10;
   int _pageIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Items')),
+      appBar: AppBar(title: const Text('Items')),
       body: Center(
         child: SingleChildScrollView(
           child: BlocBuilder<ItemBloc, ItemState>(
             builder: (context, state) {
               if (state is ItemInitial) {
-                return Center(child: Text('Press the button to fetch items'));
+                return const  Center(child: Text('Press the button to fetch items'));
               } else if (state is ItemLoading) {
-                return Center(child: CircularProgressIndicator());
+                return const  Center(child: CircularProgressIndicator());
               } else if (state is ItemLoaded || state is ItemUpdated) {
                 List<Item> items = [];
                 if (state is ItemLoaded) {
@@ -213,9 +143,9 @@ class _ItemScreenState extends State<ItemScreen> {
                 _isExpandedList = List<bool>.filled(items.length, false);
 
                 return PaginatedDataTable(
-                  header: Text('Items List'),
+                  header: const Text('Items List'),
                   rowsPerPage: _rowsPerPage,
-                  columns: [
+                  columns:const  [
                     DataColumn(label: Text('ID')),
                   ],
                   source: ItemDataSource(
@@ -224,11 +154,11 @@ class _ItemScreenState extends State<ItemScreen> {
                     setState(() {
                       //_pageIndex = pageIndex;
                     });
-                    print('Page changed to: $pageIndex');
+                     print('Page changed to: $pageIndex');
                   },
                   actions: <Widget>[
                     IconButton(
-                      icon: Icon(Icons.navigate_before),
+                      icon: const Icon(Icons.navigate_before),
                       onPressed: _pageIndex == 0
                           ? null
                           : () {
@@ -238,7 +168,7 @@ class _ItemScreenState extends State<ItemScreen> {
                             },
                     ),
                     IconButton(
-                      icon: Icon(Icons.navigate_next),
+                      icon: const Icon(Icons.navigate_next),
                       onPressed:
                           (_pageIndex + 1) * _rowsPerPage >= items.length
                               ? null
@@ -261,7 +191,7 @@ class _ItemScreenState extends State<ItemScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => context.read<ItemBloc>().add(FetchItems()),
-        child: Icon(Icons.refresh),
+        child: const Icon(Icons.refresh),
       ),
     );
   }
